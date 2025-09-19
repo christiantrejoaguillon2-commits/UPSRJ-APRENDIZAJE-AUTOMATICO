@@ -24,15 +24,15 @@ set_logging(log_file="intro_pandas.log")
 # NOTE: Revisa la API de Pandas en https://pandas.pydata.org/docs/      #
 #########################################################################
 
-input_csv  = 'inputs/estudiantes.csv'
-input_json = 'inputs/estudiantes.json'
-input_yaml = 'inputs/estudiantes.yaml'
+input_csv  = 'exercises/intro_libraries/inputs/estudiantes.csv'
+input_json = 'exercises/intro_libraries/inputs/estudiantes.json'
+input_yaml = 'exercises/intro_libraries/inputs/estudiantes.yaml'
 
 # Ejercicio 1: Manejo de archivos CSV
 #
 # TODO: Cargar el archivo CSV y registrar la cantidad de registros.
 #
-csv_data = None
+csv_data = pd.read_csv(input_csv)
 
 # Impresion de la salida csv_data
 plog(f"csv: {csv_data}", level=ERROR if csv_data is None else DEBUG, eol=True)

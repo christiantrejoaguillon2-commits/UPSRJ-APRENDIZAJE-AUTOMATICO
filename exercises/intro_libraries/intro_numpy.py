@@ -29,7 +29,7 @@ set_logging(log_file="intro_numpy.log")
 #
 # TODO: Crea un arreglo 'arg1' de 10 elementos con valor 0. 
 #
-arg1 = None
+arg1 = np.zeros(10)
 
 # Impresion de la salida arg1
 plog(f"arreglo 1: {arg1}", level=ERROR if arg1 is None else DEBUG, eol=True)
