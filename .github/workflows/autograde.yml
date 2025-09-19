@@ -2,10 +2,14 @@ name: Autograde
 
 on:
   push:
-    branches: [develop, pytest-integration]
+    branches:
+      - develop
+      - 'feature/exercise**'
   pull_request:
-    branches: [develop, pytest-integration]
-
+    branches:
+      - develop
+      - 'feature/exercise**'
+                
 jobs:
   run-autograde:
     runs-on: ubuntu-latest
@@ -13,6 +17,8 @@ jobs:
     steps:
     - name: Checkout repositorio
       uses: actions/checkout@v3
+      with:
+        submodules: recursive
 
     - name: Configurar entorno virtual
       uses: actions/setup-python@v4
@@ -28,5 +34,8 @@ jobs:
 
     - name: Ejecutar pruebas
       working-directory: autograde-core
-      run: pytest APRENDIZAJE-AUTOMATICO/01_intro_libraries/test_01_intro_numpy.py
-      
+      run: |
+        pytest APRENDIZAJE-AUTOMATICO/intro_libraries/intro_numpy.py
+        pytest APRENDIZAJE-AUTOMATICO/intro_libraries/intro_pandas.py
+        pytest APRENDIZAJE-AUTOMATICO/intro_libraries/intro_scipy.py
+        pytest APRENDIZAJE-AUTOMATICO/intro_libraries/intregrated_exercises.py
