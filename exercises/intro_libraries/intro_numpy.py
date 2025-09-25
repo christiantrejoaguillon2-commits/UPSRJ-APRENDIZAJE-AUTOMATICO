@@ -44,7 +44,7 @@ plog(f"matriz:\n{mat}", level=ERROR if mat is None else DEBUG, eol=True)
 
 # Ejercicio 5: Encontrar índices de elementos mayores a 5
 indices = np.argwhere(mat > 5)
-plog(f"indices: {indices}", level=ERROR if indices is None else DEBUG, eol=True)
+plog(f"indices: {indices}", level=ERROR if len(indices) == 0 else DEBUG, eol=True)
 
 # Ejercicio 6: Calcular la media, mediana y desviación estándar
 mean = np.mean(arg2)
