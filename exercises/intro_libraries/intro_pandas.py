@@ -30,7 +30,7 @@ input_json = 'exercises/intro_libraries/inputs/estudiantes.json'
 input_yaml = 'exercises/intro_libraries/inputs/estudiantes.yaml'
 
 # Ejercicio 01: Manejo de archivos CSV
-csv_data = pd.read_csv(input_csv)
+input_csv = '../exercises/intro_libraries/inputs/estudiantes.csv'
 plog(f"csv: {csv_data}", level=ERROR if csv_data is None else DEBUG, eol=True)
 
 # Ejercicio 02: Manejo de archivos JSON
