@@ -25,25 +25,13 @@ set_logging(log_file="intro_pandas.log")
 # NOTE: Revisa la API de Pandas en https://pandas.pydata.org/docs/      #
 #########################################################################
 
-input_csv  = 'exercises/intro_libraries/inputs/estudiantes.csv'
-input_json = 'exercises/intro_libraries/inputs/estudiantes.json'
-input_yaml = 'exercises/intro_libraries/inputs/estudiantes.yaml'
+# Definir rutas de archivos
+input_csv  = '../exercises/intro_libraries/inputs/estudiantes.csv'
+input_json = '../exercises/intro_libraries/inputs/estudiantes.json'
+input_yaml = '../exercises/intro_libraries/inputs/estudiantes.yaml'
 
 # Ejercicio 01: Manejo de archivos CSV
-input_csv = '../exercises/intro_libraries/inputs/estudiantes.csv'
-input_yaml = 'exercises/intro_libraries/inputs/estudiantes.yaml'
-
-# Ejercicio 01: Manejo de archivos CSV
-input_csv = '../exercises/intro_libraries/inputs/estudiantes.csv'
-csv_data = pd.read_csv(input_csv)  # ← ESTA LÍNEA FALTABA
-plog(f"csv: {csv_data}", level=ERROR if csv_data is None else DEBUG, eol=True)
-
-# Ejercicio 02: Manejo de archivos JSON
-json_data = pd.read_json(input_json)
-plog(f"json: {json_data}", level=ERROR if json_data is None else DEBUG, eol=True)
-
-# Ejercicio 03: Manejo de archivos YAML
-input_yaml = 'exercises/intro_libraries/inputs/estudiantes.yaml'
+csv_data = pd.read_csv(input_csv)
 plog(f"csv: {csv_data}", level=ERROR if csv_data is None else DEBUG, eol=True)
 
 # Ejercicio 02: Manejo de archivos JSON
