@@ -43,7 +43,7 @@ mat = np.arange(9).reshape(3, 3)
 plog(f"matriz:\n{mat}", level=ERROR if mat is None else DEBUG, eol=True)
 
 # Ejercicio 5: Encontrar índices de elementos mayores a 5
-indices = np.where((mat > 5))
+indices = np.where((mat > 5))
 
 # Ejercicio 6: Calcular la media, mediana y desviación estándar
 mean = np.mean(arg2)
