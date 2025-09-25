@@ -35,6 +35,7 @@ jobs:
     - name: Ejecutar pruebas
       working-directory: autograde-core
       run: |
+        export PYTHONPATH=$PYTHONPATH:..
         pytest APRENDIZAJE-AUTOMATICO/intro_libraries/intro_numpy.py
         pytest APRENDIZAJE-AUTOMATICO/intro_libraries/intro_pandas.py
         pytest APRENDIZAJE-AUTOMATICO/intro_libraries/intro_scipy.py
