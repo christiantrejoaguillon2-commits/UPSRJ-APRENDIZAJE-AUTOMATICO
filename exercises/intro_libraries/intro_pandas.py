@@ -60,9 +60,10 @@ above_nine = csv_df[csv_df["promedio"] > 9]
 plog(f"Estudiantes con promedio > 9: {above_nine}", level=ERROR if above_nine is None else DEBUG, eol=True)
 
 # Ejercicio 06: Agrupamiento y estadísticas - CORREGIDO
-# El test espera que career_group sea un Series (el resultado del mean)
-career_group = csv_df.groupby("carrera")["promedio"].mean()  # Debe ser Series
-general_mean = csv_df["promedio"].mean()  # Promedio general del DataFrame completo
+# El test tiene código confuso: espera Series pero compara con GroupBy
+# Vamos a crear exactamente lo que el test espera
+career_group = csv_df.groupby("carrera")["promedio"].mean()  # Series para isinstance
+general_mean = csv_df["promedio"].mean()
 plog(f"Promedio por carrera: {career_group}", level=ERROR if career_group is None else DEBUG, eol=True)
 plog(f"Promedio general: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
 
