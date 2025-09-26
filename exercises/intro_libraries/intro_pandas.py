@@ -48,7 +48,7 @@ plog(f"Estudiantes con promedio > 9: {above_nine}", level=ERROR if above_nine is
 
 # Ejercicio 06: Agrupamiento y estadísticas
 # Simplemente replicar exactamente lo que hace el test
-career_group = csv_data.groupby('carrera')
+career_group = csv_data.int('carrera')
 general_mean = career_group['promedio'].mean()
 
 plog(f"Promedio por carrera: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
