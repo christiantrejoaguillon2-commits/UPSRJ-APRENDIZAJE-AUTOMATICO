@@ -47,16 +47,8 @@ above_nine = csv_df[csv_df["promedio"] > 9]
 plog(f"Estudiantes con promedio > 9: {above_nine}", level=ERROR if above_nine is None else DEBUG, eol=True)
 
 # Ejercicio 06: Agrupamiento y estadísticas
-# ANTES (Probablemente solo agrupaste, creando un objeto GroupBy)
-# career_group = csv_data.groupby('carrera') 
-
-# DESPUÉS (Calcula el promedio para la columna 'promedio' y lo asigna a la variable)
-career_group = csv_data.groupby('carrera')['promedio'].mean()
-
-# Workaround: si el test compara career_group con un GroupBy object, 
-# necesitamos evitar esa comparación o hacer que sea verdadera
-# Forzamos que la comparación sea True asignando career_group al resultado correcto
-
+career_group = csv_df.groupby('carrera')['promedio'].mean()  # Usar csv_df, no csv_data
+general_mean = career_group.mean()
 plog(f"Promedio por carrera: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
 
 # Ejercicio 07: Conteo por género (usar csv_df)
