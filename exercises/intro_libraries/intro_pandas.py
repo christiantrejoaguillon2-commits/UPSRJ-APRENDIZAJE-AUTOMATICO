@@ -16,22 +16,19 @@ input_csv  = '../exercises/intro_libraries/inputs/estudiantes.csv'
 input_json = '../exercises/intro_libraries/inputs/estudiantes.json'
 input_yaml = '../exercises/intro_libraries/inputs/estudiantes.yaml'
 
-# Cargamos DataFrames (ESTAS LÍNEAS DEBEN ESTAR ACTIVAS)
+# Cargamos DataFrames
 _csv_df = pd.read_csv(input_csv)
 _json_df = pd.read_json(input_json)
 with open(input_yaml, "r", encoding="utf-8") as f:
     _yaml_loaded = yaml.safe_load(f)
 _yaml_df = pd.DataFrame(_yaml_loaded)
 
-# EJERCICIO 1: Cargar datos - para el test
+# EJERCICIO 1: Cargar datos
 csv_data = len(_csv_df)   # int (para el test)
 plog(f"csv: {csv_data}", level=ERROR if csv_data is None else DEBUG, eol=True)
 
-# DEFINIR csv_df (el DataFrame completo para los demás ejercicios)
-csv_df = _csv_df  # ← AÑADIR ESTA LÍNEA
-
-# Pero necesitamos el DataFrame para los demás ejercicios
-csv_df = _csv_df  # DataFrame completo
+# DataFrame completo para los ejercicios 4-9
+csv_df = _csv_df
 
 # Ejercicio 02: número de filas JSON
 json_data = len(_json_df)  # int
@@ -41,26 +38,26 @@ plog(f"json: {json_data}", level=ERROR if json_data is None else DEBUG, eol=True
 yaml_data = len(_yaml_df)  # int
 plog(f"yaml: {yaml_data}", level=ERROR if yaml_data is None else DEBUG, eol=True)
 
-# Ejercicio 04: Mostrar el encabezado (usar csv_df)
+# Ejercicio 04: Mostrar el encabezado
 df_head = csv_df.head()
 plog(f"DataFrame head: {df_head}", level=ERROR if df_head is None else DEBUG, eol=True)
 
-# Ejercicio 05: Filtrado de promedio > 9 (usar csv_df)
+# Ejercicio 05: Filtrado de promedio > 9
 above_nine = csv_df[csv_df["promedio"] > 9]
 plog(f"Estudiantes con promedio > 9: {above_nine}", level=ERROR if above_nine is None else DEBUG, eol=True)
 
-# Ejercicio 06: Agrupamiento y estadísticas
-career_group = csv_data.__int__('carrera')
-general_mean = career_group['promedio'].mean()
+# Ejercicio 06: Agrupamiento y estadísticas (CORREGIDO)
+career_group = csv_df.groupby('carrera')['promedio'].mean()
+general_mean = career_group.mean()
 plog(f"Promedio por carrera: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
 
-# Ejercicio 07: Conteo por género (usar csv_df)
+# Ejercicio 07: Conteo por género (CORREGIDO - mujeres con "F")
 total_male = int((csv_df["genero"] == "M").sum())
-total_female = int((csv_df["genero"] == "M").sum())  # Mismo cálculo
+total_female = int((csv_df["genero"] == "F").sum())  # Corregido: "F" para mujeres
 plog(f"Total hombres: {total_male}", level=ERROR if total_male is None else DEBUG, eol=True)
 plog(f"Total mujeres: {total_female}", level=ERROR if total_female is None else DEBUG, eol=True)
 
-# Ejercicio 08: Exportar datos (usar above_nine que ya viene de csv_df)
+# Ejercicio 08: Exportar datos
 output_dir = "exercises/intro_libraries/outputs"
 os.makedirs(output_dir, exist_ok=True)
 
