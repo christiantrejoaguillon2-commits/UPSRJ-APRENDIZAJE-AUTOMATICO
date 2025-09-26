@@ -46,10 +46,20 @@ plog(f"DataFrame head: {df_head}", level=ERROR if df_head is None else DEBUG, eo
 above_nine = csv_df[csv_df["promedio"] > 9]
 plog(f"Estudiantes con promedio > 9: {above_nine}", level=ERROR if above_nine is None else DEBUG, eol=True)
 
-# Ejercicio 06: Agrupamiento y estadísticas (usar csv_df)
-career_group = csv_df.groupby('carrera')  # GroupBy object
-general_mean = career_group['promedio'].mean().mean()  # Promedio de promedios
-plog(f"Promedio por carrera: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
+# Ejercicio 06: Agrupamiento y estadísticas
+#
+# TODO: Agrupar por carrera y calcular promedio general.
+#
+career_group = json_data.groupby('carrera')['promedio'].mean()
+general_mean = json_data['promedio'].mean()
+
+# Impresion de la salida career_group
+plog(f"Promedio por carrera: {career_group}", level=ERROR if career_group is None else DEBUG, eol=True)
+
+# Impresion de la salida general_mean
+plog(f"Promedio general: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
+
+
 
 # Ejercicio 07: Conteo por género (usar csv_df)
 total_male = int((csv_df["genero"] == "M").sum())
