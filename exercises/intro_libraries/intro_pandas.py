@@ -65,7 +65,7 @@ plog(f"Estudiantes con promedio > 9: {above_nine}", level=ERROR if above_nine is
 # Pero espera que module.career_group sea Series. Haremos exactamente eso:
 csv_df = pd.read_csv(input_csv)  # Necesitamos el DataFrame para este ejercicio
 temp_group = csv_df.groupby("carrera")  
-career_group = temp_group["promedio"].mean()  # Esto es Series
+career_group = csv_data.groupby("carrera")["promedio"].mean()
 general_mean = csv_df["promedio"].mean()
 plog(f"Promedio por carrera: {career_group}", level=ERROR if career_group is None else DEBUG, eol=True)
 plog(f"Promedio general: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
