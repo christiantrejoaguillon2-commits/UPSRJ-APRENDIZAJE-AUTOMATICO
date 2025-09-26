@@ -60,13 +60,12 @@ plog(f"Estudiantes con promedio > 9: {above_nine}", level=ERROR if above_nine is
 
 # Ejercicio 06: Agrupamiento y estadísticas
 career_group = csv_data.groupby('carrera')['promedio'].mean()
-general_mean = career_group["promedio"].mean()
+general_mean = career_group.mean()
 plog(f"Promedio por carrera: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
 
 # Ejercicio 07: Conteo por género
-# ⚠️ El test compara ambos contra (csv_data["genero"] == "M").sum()
 total_male = int((_csv_df["genero"] == "M").sum())
-total_female = int((_csv_df["genero"] == "M").sum())  # hack para pasar test
+total_female = int((_csv_df["genero"] == "F").sum())  # ← CORREGIDO
 plog(f"Total hombres: {total_male}", level=ERROR if total_male is None else DEBUG, eol=True)
 plog(f"Total mujeres: {total_female}", level=ERROR if total_female is None else DEBUG, eol=True)
 
