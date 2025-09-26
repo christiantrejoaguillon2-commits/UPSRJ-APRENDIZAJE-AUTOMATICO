@@ -38,9 +38,9 @@ with open(input_yaml, "r", encoding="utf-8") as f:
     _yaml_loaded = yaml.safe_load(f)
 _yaml_df = pd.DataFrame(_yaml_loaded)
 
-# Ejercicio 01: número de filas CSV
-csv_data = len(_csv_df)   # int
-plog(f"csv: {csv_data}", level=ERROR if csv_data is None else DEBUG, eol=True)
+# EJERCICIO 1: Cargar datos - CORREGIDO
+csv_data = _csv_df   # Esto mantiene el DataFrame completo
+plog(f"csv: {len(csv_data)}", level=ERROR if csv_data is None else DEBUG, eol=True)
 
 # Ejercicio 02: número de filas JSON
 json_data = len(_json_df)  # int
