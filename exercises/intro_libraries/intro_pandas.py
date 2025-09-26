@@ -27,6 +27,9 @@ _yaml_df = pd.DataFrame(_yaml_loaded)
 csv_data = len(_csv_df)   # int (para el test)
 plog(f"csv: {csv_data}", level=ERROR if csv_data is None else DEBUG, eol=True)
 
+# DEFINIR csv_df (el DataFrame completo para los demás ejercicios)
+csv_df = _csv_df  # ← AÑADIR ESTA LÍNEA
+
 # Pero necesitamos el DataFrame para los demás ejercicios
 csv_df = _csv_df  # DataFrame completo
 
@@ -48,7 +51,7 @@ plog(f"Estudiantes con promedio > 9: {above_nine}", level=ERROR if above_nine is
 
 # Ejercicio 06: Agrupamiento y estadísticas
 # Simplemente replicar exactamente lo que hace el test
-career_group = csv_data.__int__('carrera')
+career_group = csv_df.groupby('carrera')['promedio'].mean()
 general_mean = career_group['promedio'].mean()
 
 plog(f"Promedio por carrera: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
