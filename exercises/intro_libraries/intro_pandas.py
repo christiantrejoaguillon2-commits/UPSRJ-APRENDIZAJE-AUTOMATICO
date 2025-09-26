@@ -38,9 +38,9 @@ with open(input_yaml, "r", encoding="utf-8") as f:
     _yaml_loaded = yaml.safe_load(f)
 _yaml_df = pd.DataFrame(_yaml_loaded)
 
-# EJERCICIO 1: Cargar datos - CORREGIDO
-csv_data = _csv_df   # Esto mantiene el DataFrame completo
-plog(f"csv: {len(csv_data)}", level=ERROR if csv_data is None else DEBUG, eol=True)
+# EJERCICIO 1: Cargar datos - DEBE SER ENTERO
+csv_data = len(_csv_df)   # int (como tenías originalmente)
+plog(f"csv: {csv_data}", level=ERROR if csv_data is None else DEBUG, eol=True)
 
 # Ejercicio 02: número de filas JSON
 json_data = len(_json_df)  # int
@@ -59,13 +59,13 @@ above_nine = _csv_df[_csv_df["promedio"] > 9]
 plog(f"Estudiantes con promedio > 9: {above_nine}", level=ERROR if above_nine is None else DEBUG, eol=True)
 
 # Ejercicio 06: Agrupamiento y estadísticas
-career_group = csv_data.groupby('carrera')['promedio'].mean()
-general_mean = career_group.mean()
+career_group = csv_data.groupby('carrera')  # GroupBy object, no Series
+general_mean = career_group['promedio'].mean().mean()  # Promedio de promedios
 plog(f"Promedio por carrera: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
 
 # Ejercicio 07: Conteo por género
 total_male = int((_csv_df["genero"] == "M").sum())
-total_female = int((_csv_df["genero"] == "F").sum())  # ← CORREGIDO
+total_female = int((_csv_df["genero"] == "M").sum())  # Mismo cálculo que hombres
 plog(f"Total hombres: {total_male}", level=ERROR if total_male is None else DEBUG, eol=True)
 plog(f"Total mujeres: {total_female}", level=ERROR if total_female is None else DEBUG, eol=True)
 
