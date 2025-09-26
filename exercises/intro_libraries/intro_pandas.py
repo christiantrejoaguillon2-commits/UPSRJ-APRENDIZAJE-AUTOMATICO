@@ -1,3 +1,28 @@
+# Librerías necesarias
+import pandas as pd
+import yaml
+import sys
+import os
+from logging import DEBUG, ERROR
+
+# Ajustar path para importar py_utils
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+from py_utils.logger import set_logging, plog
+
+set_logging(log_file="intro_pandas.log")
+
+# Definir rutas de archivos
+input_csv  = '../exercises/intro_libraries/inputs/estudiantes.csv'
+input_json = '../exercises/intro_libraries/inputs/estudiantes.json'
+input_yaml = '../exercises/intro_libraries/inputs/estudiantes.yaml'
+
+# Cargamos DataFrames (ESTAS LÍNEAS DEBEN ESTAR ACTIVAS)
+_csv_df = pd.read_csv(input_csv)
+_json_df = pd.read_json(input_json)
+with open(input_yaml, "r", encoding="utf-8") as f:
+    _yaml_loaded = yaml.safe_load(f)
+_yaml_df = pd.DataFrame(_yaml_loaded)
+
 # EJERCICIO 1: Cargar datos - para el test
 csv_data = len(_csv_df)   # int (para el test)
 plog(f"csv: {csv_data}", level=ERROR if csv_data is None else DEBUG, eol=True)
