@@ -26,9 +26,9 @@ set_logging(log_file="intro_pandas.log")
 #########################################################################
 
 # Definir rutas de archivos
-input_csv  = '../exercises/intro_libraries/inputs/estudiantes.csv'
-input_json = '../exercises/intro_libraries/inputs/estudiantes.json'
-input_yaml = '../exercises/intro_libraries/inputs/estudiantes.yaml'
+input_csv  = 'inputs/estudiantes.csv'
+input_json = 'inputs/estudiantes.json'
+input_yaml = 'inputs/estudiantes.yaml'
 
 # Ejercicio 01: Manejo de archivos CSV - Debe devolver el NÚMERO de filas
 csv_data = len(pd.read_csv(input_csv))  # Retorna int, no DataFrame
