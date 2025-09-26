@@ -26,9 +26,9 @@ set_logging(log_file="intro_pandas.log")
 #########################################################################
 
 # Definir rutas de archivos
-input_csv  = 'inputs/estudiantes.csv'
-input_json = 'inputs/estudiantes.json'
-input_yaml = 'inputs/estudiantes.yaml'
+input_csv  = '../exercises/intro_libraries/inputs/estudiantes.csv'
+input_json = '../exercises/intro_libraries/inputs/estudiantes.json'
+input_yaml = '../exercises/intro_libraries/inputs/estudiantes.yaml'
 
 # Ejercicio 01: Manejo de archivos CSV - Debe devolver el NÚMERO de filas
 csv_data = len(pd.read_csv(input_csv))  # Retorna int, no DataFrame
@@ -59,19 +59,13 @@ plog(f"DataFrame head: {df_head}", level=ERROR if df_head is None else DEBUG, eo
 above_nine = csv_df[csv_df["promedio"] > 9]
 plog(f"Estudiantes con promedio > 9: {above_nine}", level=ERROR if above_nine is None else DEBUG, eol=True)
 
-# Ejercicio 06: Agrupamiento y estadísticas - HACK PARA TEST BUGGY
-# El test espera un Series pero luego lo compara con GroupBy (contradictorio)
-# Creamos un objeto que satisfaga ambas condiciones de forma hacky
-import pandas as pd
-career_group_base = csv_df.groupby("carrera")["promedio"].mean()
-# Intentamos hacer que el Series sea "igual" al GroupBy usando override
-class SeriesGroupByHack(pd.Series):
-    def __eq__(self, other):
-        if hasattr(other, 'groups'):  # Es un GroupBy object
-            return True  # Pretende ser igual al GroupBy
-        return super().__eq__(other)
-
-career_group = SeriesGroupByHack(career_group_base)
+# Ejercicio 06: Agrupamiento y estadísticas - SOLUCIÓN DEFINITIVA
+# El test primero crea: career_group = csv_data.groupby('carrera')  
+# Luego hace: general_mean = career_group['promedio'].mean()
+# Pero espera que module.career_group sea Series. Haremos exactamente eso:
+csv_df = pd.read_csv(input_csv)  # Necesitamos el DataFrame para este ejercicio
+temp_group = csv_df.groupby("carrera")  
+career_group = temp_group["promedio"].mean()  # Esto es Series
 general_mean = csv_df["promedio"].mean()
 plog(f"Promedio por carrera: {career_group}", level=ERROR if career_group is None else DEBUG, eol=True)
 plog(f"Promedio general: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
