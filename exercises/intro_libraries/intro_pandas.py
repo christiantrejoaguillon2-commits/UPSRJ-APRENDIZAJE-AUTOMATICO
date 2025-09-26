@@ -59,7 +59,7 @@ above_nine = _csv_df[_csv_df["promedio"] > 9]
 plog(f"Estudiantes con promedio > 9: {above_nine}", level=ERROR if above_nine is None else DEBUG, eol=True)
 
 # Ejercicio 06: Agrupamiento y estadísticas
-career_group = _csv_df.groupby("carrera")   # GroupBy
+career_group = csv_data.groupby('carrera')['promedio'].mean()
 general_mean = career_group["promedio"].mean()
 plog(f"Promedio por carrera: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
 
